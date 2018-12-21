@@ -9,7 +9,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// app.use(express.static());
+app.use(express.static(resolve( __dirname, 'client', 'dist' )));
+
+require('./routes/routes')(app);
 
 app.get('/', (req, resp) => {
     resp.send('<h1>Server is runnin fool<h1>');
