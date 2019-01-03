@@ -65,7 +65,14 @@ function validate({firstName, lastName, email, password, confirmPassword}){
 
 SignUpForm = reduxForm({
     form: 'sign-up',
-    validate
+    validate, 
+    initialValues: {
+        firstName: 'Moana',
+        lastName: 'LukaNukiDua',
+        email: 'underdasea@gmail.com',
+        password: 'asDF1234!',
+        confirmPassword: 'asDF1234!'
+    }
 })(SignUpForm);
 
 export default SignUpForm;
