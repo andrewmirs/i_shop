@@ -1,8 +1,9 @@
 import React from 'react';
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize';
-import AccountRoutes from './account';
 import { Route, Switch } from 'react-router-dom';
+import AccountRoutes from './account';
+import Home from './home';
 import NotFound from './general/404'
 import Nav from './nav'
 
@@ -11,8 +12,9 @@ const App = () => (
         <Nav/>
         <div className="container">
             <Switch>
-                <Route path="/account" component={AccountRoutes}/>
-                <Route component = {NotFound}/>
+                <Route exact path="/" component={Home} />
+                <Route path="/account" component={AccountRoutes} />
+                <Route component={NotFound} />
             </Switch>
         </div>
     </div>
