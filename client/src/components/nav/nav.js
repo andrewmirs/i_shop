@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { signOut } from '../../actions';
 import SideNav from './side_nav';
 import './nav.scss';
 
@@ -38,7 +40,11 @@ class Nav extends Component {
     }
 
     renderSignOut(){
-       return <button className="btn wave-effect waves-light blue" onClick={() => console.log('Sign Out Clicked')}>Sign Out</button>
+       return (
+            <button className="btn wave-effect waves-light blue" onClick={this.props.signOut}>
+                Sign Out
+            </button>
+       );
     }
 
     buildLink(link){
@@ -50,7 +56,8 @@ class Nav extends Component {
     }
 
     renderLinks = () => {
-        const auth = true;
+        const { auth } = this.props;
+
         let authLinks = [];
 
         const { auth: navAuth, common, nonAuth } = this.state
@@ -87,5 +94,11 @@ class Nav extends Component {
         );
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        auth: state.user.auth
+    }
+}
  
-export default Nav;
+export default connect(mapStateToProps, { signOut })(Nav);
